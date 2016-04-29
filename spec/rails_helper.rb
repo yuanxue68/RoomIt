@@ -7,7 +7,6 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'support/database_cleaner'
 require 'support/factory_girl'
-
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -59,10 +58,9 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 
-Shoulda::Matcher.configure do |config|
+Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :rspec
     with.library :rails
   end
 end
-

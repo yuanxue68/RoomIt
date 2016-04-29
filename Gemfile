@@ -42,12 +42,9 @@ gem 'materialize-sass'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-end
-
-group :test do
+  gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
   gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
   gem 'factory_girl_rails', '~> 4.6'
-  gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
   gem 'shoulda-matchers', '~> 3.1.1'
 end
 
