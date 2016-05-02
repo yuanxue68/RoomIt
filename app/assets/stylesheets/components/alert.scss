@@ -1,20 +1,17 @@
 .alert {
   padding: 15px;
-  margin-bottom: 20px;
   border: 1px solid transparent;
 }
 
-.alert-danger {
-  color: #a94442;
-  border-color: #ebccd1;
+.alert-danger, .alert-alert {
+  color: #565a5c;
+  background-color: #ebccd1;
 }
 
-.alert-info {
-  color: #31708f;
-  border-color: #bce8f1;
+.alert-info, .alert-notice, .alert-success {
+  color: #565a5c;
+  background-color: #c2e4e7;
 }
 
-.alert-success {
-  color: #3c763d;
-  border-color: #d6e9c6;
-}
+.field_with_errors { display: inline; }
+

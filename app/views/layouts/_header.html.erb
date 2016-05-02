@@ -1,0 +1,35 @@
+<nav>
+  <div class="nav-wrapper">
+    <%= link_to "RoomMit", root_path, class: "left logo" %>
+	    <ul id="nav-mobile" class="right">
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to new_post_path do %>
+            <i class="material-icons left">input</i> New Posting
+          <% end %>
+        </li>
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="material-icons left">input</i> Sign Out
+          <% end %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to new_user_session_path do %>
+            <i class="material-icons left">perm_identity</i> Sign In
+          <% end %>
+        </li>
+        <li>
+          <%= link_to new_user_registration_path do %>
+            <i class="material-icons left">person_pin</i> Sign Up
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <%= form_tag "/posts", method: "get", class: "left nav-search" do %>
+      <i class="fa fa-search"></i>
+      <%= text_field_tag :location, nil, placeholder:"where?" %>
+    <% end %>
+ 
+	</div>
+</nav>

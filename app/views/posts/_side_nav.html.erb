@@ -1,0 +1,33 @@
+<div>
+  <div class="side-nav row" id="slide-out">
+    <%= form_tag "/posts", method: "get", class:"col s12", id:"filter-form" do %>
+      <h6>Rent</h6>
+      <div class="row">
+        <div id="rent-slider"></div>
+      </div>
+      <h6>Room</h6>
+      <div class="row">
+        <div class="input-field col s6">
+          <%= select_tag :bedroom, options_for_select((1..8).to_a.map{|num| ["#{num}", num]}) %>
+          <%= label_tag :bedroom, "Number of Bedroom" %>
+        </div>
+        <div class="input-field col s6">
+          <%= select_tag :bathroom, options_for_select((1..5).to_a.map{|num| ["#{num}", num]}) %>
+          <%= label_tag :bathroom, "Number of Bathroom" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <%= text_field_tag :title %>
+          <%= label_tag :title, "Listing Title" %>
+        </div>
+      </div>
+
+      <div class="row center-align">
+        <%= button_tag  :Reset, class:"btn", id:"filter-reset" %>
+      </div>
+    <% end %>
+  </div>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+</div>

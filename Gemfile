@@ -29,6 +29,8 @@ gem 'omniauth-facebook', '3.0.0'
 gem 'faker', '1.6.3'
 gem 'font-awesome-rails', '4.5.0.1'
 gem 'materialize-sass'
+gem 'geocoder'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

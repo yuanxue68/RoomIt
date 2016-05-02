@@ -1,0 +1,43 @@
+<%= render 'side_nav' %>
+<div class="fixed-action-btn horizontal" style="top: 80px; right: 24px;">
+  <a class="btn-floating btn-large red">
+    <i class="large material-icons">menu</i>
+  </a>
+  <ul>
+    <li><a class="btn-floating green"><i class="fa fa-list-ol"></i></a></li>
+    <li><a id="open-side" class="btn-floating blue"><i class="fa fa-filter"></i></a></li>
+  </ul>
+</div>
+
+<div class="map-container">
+  <div id="map-canvas">
+  </div>
+</div>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlGayY9XEUSHqk7CU1Ia13fs3v7VR0hoo"></script>
+<script>
+  function initMap(){
+    var zoom = <%= params[:zoom] || 15 %>;
+    var latlng;
+    <% if params[:swLat] && params[:swLng] && params[:neLat] && params[:neLng] %>
+      var bounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng(<%=params[:swLat]%>, <%=params[:swLng]%>),
+          new google.maps.LatLng(<%=params[:neLat]%>, <%=params[:neLng]%>)
+      );
+      latlng = bounds.getCenter();
+    <% elsif @coordinate %>
+      latlng = new google.maps.LatLng(<%=@coordinate[0]%>, <%=@coordinate[1]%>)
+    <% end %>
+    var center = latlng || new google.maps.LatLng(43.649, -79.388); //set to toronto by default
+    var myOptions = {
+      zoom: zoom,
+      center: center,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions); 
+    var gmap = new GMap(map)
+  };
+  google.maps.event.addDomListener(window, 'load', initMap);
+</script>
+

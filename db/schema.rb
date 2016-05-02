@@ -11,30 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429003114) do
+ActiveRecord::Schema.define(version: 20160501021735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "posts", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.string   "home_type"
-    t.string   "room_type"
-    t.integer  "bedroom"
-    t.integer  "bathroom"
-    t.string   "address"
-    t.boolean  "has_tv"
-    t.boolean  "has_kitchen"
-    t.boolean  "has_air"
-    t.boolean  "has_heating"
-    t.boolean  "hes_internet"
-    t.integer  "price"
-    t.integer  "user_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "title",                          null: false
+    t.text     "description",                    null: false
+    t.date     "available_date"
+    t.string   "home_type",                      null: false
+    t.string   "room_type",                      null: false
+    t.integer  "bedroom",                        null: false
+    t.integer  "bathroom",                       null: false
+    t.string   "apt_num"
+    t.string   "street_address",                 null: false
+    t.string   "city",                           null: false
+    t.string   "province",                       null: false
+    t.string   "postal_code",                    null: false
+    t.boolean  "has_tv",                         null: false
+    t.boolean  "has_kitchen",    default: false
+    t.boolean  "has_air",        default: false
+    t.boolean  "has_heating",    default: false
+    t.boolean  "has_internet",   default: false
+    t.integer  "price",                          null: false
+    t.integer  "user_id",                        null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
+  add_index "posts", ["latitude", "longitude"], name: "index_posts_on_latitude_and_longitude", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
