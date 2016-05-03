@@ -1,9 +1,22 @@
 <div>
   <div class="side-nav row" id="slide-out">
+    <% url = params[:view] == "list" ? "/posts?view=list" : "/posts" %>
     <%= form_tag "/posts", method: "get", class:"col s12", id:"filter-form" do %>
       <h6>Rent</h6>
       <div class="row">
-        <div id="rent-slider"></div>
+        <% if params[:view] == "list" %>
+          <%= hidden_field_tag "view", "list" %>
+          <div class="input-field col s6">
+            <%= text_field_tag :minRent %>
+            <%= label_tag :minRent, "Min Rent" %>
+          </div>
+          <div class="input-field col s6"> 
+            <%= text_field_tag :maxRent %>
+            <%= label_tag :maxRent, 'Max Rent' %>
+          </div>
+        <% else %>
+          <div id="rent-slider"></div>
+        <% end %>
       </div>
       <h6>Room</h6>
       <div class="row">
@@ -24,10 +37,15 @@
         </div>
       </div>
 
-      <div class="row center-align">
-        <%= button_tag  :Reset, class:"btn", id:"filter-reset" %>
-      </div>
+      <% if params[:view] == "list" %>
+        <div class="row center-align">
+          <%= submit_tag "Submit", class: "btn" %>
+        </div>
+      <% else %>
+        <div class="row center-align">
+          <%= button_tag  :Reset, class:"btn", id:"filter-reset" %>
+        </div>
+      <% end %>
     <% end %>
   </div>
-  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 </div>

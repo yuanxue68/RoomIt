@@ -5,9 +5,15 @@ class PostsController < ApplicationController
   def index
     if request.format.html?
       @coordinate = params[:location] ? Geocoder.coordinates(params[:location]) : nil
+      if params[:view] == "list"
+        @posts = Post.search_listing(params).page(params[:page]).per(10)
+        render 'posts/index_list'
+      else
+        render 'posts/index'
+      end
     else
-      @post = Post.search_listing params 
-      render json: @post
+      @posts = Post.search_listing params 
+      render json: @posts
     end
   end
 

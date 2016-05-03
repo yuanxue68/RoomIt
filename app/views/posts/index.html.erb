@@ -4,8 +4,12 @@
     <i class="large material-icons">menu</i>
   </a>
   <ul>
-    <li><a class="btn-floating green"><i class="fa fa-list-ol"></i></a></li>
-    <li><a id="open-side" class="btn-floating blue"><i class="fa fa-filter"></i></a></li>
+    <li>
+      <%= link_to posts_path(view: "list"), class:"btn-floating green" do %>
+        <i class="fa fa-list-ol"></i>
+      <% end %>
+    </li>
+    <li><a href="#" data-activates="slide-out" class="button-collapse btn-floating blue"><i class="fa fa-filter"></i></a></li>
   </ul>
 </div>
 

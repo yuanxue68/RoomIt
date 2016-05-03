@@ -4,7 +4,7 @@ class @GMap
     @infoWindows = []
     @filter = new ListingFilter()
     @filter.form.on 'change', @updateMarkers
-    @filter.rentSlider.noUiSlider.on 'change', @updateMarkers
+    @filter.rentSlider.noUiSlider.on 'set', @updateMarkers
     @map.addListener 'idle', @updateMarkers
 
   addMarker: (post)=>

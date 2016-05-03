@@ -30,6 +30,7 @@ gem 'faker', '1.6.3'
 gem 'font-awesome-rails', '4.5.0.1'
 gem 'materialize-sass'
 gem 'geocoder'
+gem 'kaminari'
 
 
 # Use ActiveModel has_secure_password

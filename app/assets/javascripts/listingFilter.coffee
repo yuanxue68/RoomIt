@@ -18,6 +18,7 @@ class @ListingFilter
     "#{@form.serialize()}&minRent=#{rent[0]}&maxRent=#{rent[1]}"
 
   createSlider: ->
+    console.log "creating slider"
     slider = document.getElementById('rent-slider')
     noUiSlider.create(slider, {
       start: [0, 3000],
