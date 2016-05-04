@@ -24,11 +24,20 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
+      if params[:images]
+        params[:images].each do |image|
+          @post.photos.create(image:image)
+        end
+      end
       flash[:success] = "Posting successfully Created"
       redirect_to posts_path
     else
       render "posts/new"
     end
+  end
+
+  def show
+    @post = Post.find(params[:id])
   end
 
   def edit
@@ -51,6 +60,11 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :description, :home_type, :room_type, :bedroom, :bathroom, :street_address, :city, :province, :postal_code, :has_tv, :has_kitchen, :has_air, :has_heating, :has_internet, :price)
+    params.require(:post).permit(
+      :title, :description, :home_type, :room_type, :bedroom, 
+      :bathroom, :street_address, :city, :province, :postal_code,
+      :has_tv, :has_kitchen, :has_air, :has_heating, :has_internet, 
+      :price
+    )
   end
 end

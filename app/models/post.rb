@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   belongs_to :user
+  has_many :photos
   validates :title, :description, :home_type, :room_type, :bedroom, :bathroom, :street_address, :city, :province, :postal_code, :price, presence: true
   validates :title, length: { maximum: 80 }
   validates :description, length: { maximum: 500 }
