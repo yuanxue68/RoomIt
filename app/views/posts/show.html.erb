@@ -1,8 +1,104 @@
-<%= link_to 'Back', :back, class:"btn" %>
-
 <div class="row">
+  <div class="col s10 offset-s1">
+    <div class="row center-align">
+      <h4><%=@post.title%></h4>
+    </div>
+
+    <div class="row">
+      <div class="col s8">
+        <h5><i class="fa fa-usd"></i> <%=@post.price%> - <%=@post.street_address%></h5>
+        <div><i class="fa fa-map-pin"></i> <%= @post.full_street_address %></div>
+
+        <div class="slider">
+          <ul class="slides">
+            <% if @post.photos.empty? %>
+              <li>
+                <%= image_tag 'no_picture.png'%>
+              </li>
+            <% else %>
+              <% @post.photos.each do |photo| %>
+                <li>
+                  <%= image_tag photo.image.url(:medium)%>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Description</h5>
+          <div>
+            <%= @post.description %>
+          </div>
+        </div>
+				
+				<div>
+        	<h5>Amenities</h5>
+				</div>
+      </div>
+
+      <div class="col s4">
+        <h5>Details</h5>
+				<table class="striped">
+					</thead>
+					<tbody>
+						<tr>
+							<td><b>Price</b></td>
+							<td>$<%=@post.price%></td>
+						</tr>
+						<tr>
+							<td><b>Bedroom</b></td>
+							<td><%=@post.bedroom%></td>
+						</tr>
+						<tr>
+							<td><b>Bathroom</b></td>
+							<td><%=@post.bathroom%></td>
+						</tr>
+						<tr>
+							<td><b>Available</b></td>
+              <td><%=@post.available_date%></td>
+            </tr>
+            <tr>
+              <td><b>Address</b></td>
+              <td><%=@post.full_street_address%></td>
+            </tr>
+					</tbody>
+        </table>
+      </div>
+    </div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<h5>Surroundings</h5>
+				<div id="map">
+					
+				</div>
+			</div>
+		</div>
+
+  </div>
 </div>
 
-<div>
-</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlGayY9XEUSHqk7CU1Ia13fs3v7VR0hoo"></script>
+<script>
+	function initialize() {
+		var mapCanvas = document.getElementById('map');
+		var mapOptions = {
+			center: new google.maps.LatLng(<%= @post.latitude %>, <%= @post.longitude %>),
+			zoom: 15,
+  		scaleControl: false,
+  		scrollwheel: false,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		}
+		var map = new google.maps.Map(mapCanvas, mapOptions);
+		var marker = new google.maps.Marker({
+			position: new google.maps.LatLng(<%= @post.latitude %>, <%= @post.longitude %>),
+			title: "Roomit"
+		});
+		marker.setMap(map);
+	}
+	google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
 

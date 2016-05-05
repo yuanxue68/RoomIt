@@ -41,7 +41,7 @@ class @GMap
         "</div>"+
       "</div>"+
       "<div class='center-align'>"+
-        "<button class='btn'>More Info</button>"+
+        "<a href='/posts/#{post.id}' target='_blank' class='btn'>More Info</a>"+
       "</div>"+
     "</div>"
 
