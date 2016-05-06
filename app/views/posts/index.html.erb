@@ -19,7 +19,6 @@
 </div>
 
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlGayY9XEUSHqk7CU1Ia13fs3v7VR0hoo"></script>
 <script>
   function initMap(){
     var zoom = <%= params[:zoom] || 15 %>;
@@ -42,6 +41,9 @@
     var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions); 
     var gmap = new GMap(map)
   };
-  google.maps.event.addDomListener(window, 'load', initMap);
+  $(document).on('page:change', function(){
+    initMap();
+  })
+//google.maps.event.addDomListener(window, 'load', initMap);
 </script>
 

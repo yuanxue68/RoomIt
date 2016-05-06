@@ -26,3 +26,50 @@
 .current {
 	color: black;
 }
+
+.panel-heading {
+  padding: 0;
+  img {
+    width: 100%;
+  }
+}
+
+.avatar {
+	margin: auto;
+  img {
+    width: 100%;
+  }
+}
+
+.avatar-thumb {
+  width: 80px;
+  heigh: 90px;
+}
+
+.avatar-profile {
+  width: 180px;
+  height: 180px;
+}
+
+.info-box {
+	text-align: left;	
+	margin: auto;
+	padding: 10px;
+	width: 250px;		
+}
+
+.preview-crop{
+	width: 80px;
+	height: 80px;
+	overflow: hidden;
+}
+
+.crop-box{
+	max-width:500px;
+	max-height: 500px;
+	margin:auto;
+}
+
+.center-block{
+	margin:auto;
+}

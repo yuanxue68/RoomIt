@@ -38,12 +38,25 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.includes(:photos).find(params[:id])
+    @nearby = @post.nearbys(5).limit(4)
   end
 
   def edit
+    @photos = @post.photos
   end
 
   def update
+    if @post.update(post_params)
+      if params[:images]
+        params[:images].each do |image|
+          @post.photos.create(image: image)
+        end
+      end
+      flash[:notice] = "Post Successfully Updated"
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
   end
 
   def destroy

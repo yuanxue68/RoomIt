@@ -1,8 +1,24 @@
 Rails.application.routes.draw do
 
   root to: "home_pages#index"
-  devise_for :users
+  devise_for :users, skip: :registrations
+	devise_scope :user do 
+    resource :registration,
+      only: [:new, :create, :edit, :update],
+      path: 'user',
+      path_names: { new: 'sign_up'},
+      controller: 'registrations',
+      as: :user_registration do 
+        get :cancel
+      end
+  end
   resources :posts
+  resources :photos, only:[:show, :destroy]
+  resources :users, only: [:show] do
+    member do
+      get :crop
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

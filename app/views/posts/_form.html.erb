@@ -1,0 +1,161 @@
+<%= form_for @post, html: {multipart: true} do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <h5>Basic Information </h5>
+  <div class="row">
+    <div class="input-field col s6">
+      <i class="material-icons prefix">sort_by_alpha</i>
+      <%= f.label :title %><br/>
+      <%= f.text_field :title, autofocus:true %>
+    </div>
+    <div class="input-field col s6">
+      <i class="fa fa-money prefix"></i>
+      <%= f.label :price, "Price Per Month" %><br/>
+      <%= f.text_field :price %>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <i class="material-icons prefix">info_outline</i>
+      <%= f.label :description %><br/>
+      <%= f.text_field :description%>
+    </div>
+  </div>      
+
+  <div class="row">
+    <div class="col s6">
+      <i class="material-icons prefix fa fa-calendar-check-o"></i>
+      <%= f.label :available_date %>
+      <%= f.date_field :available_date %>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="row">
+    <h5 class="center-align">Room Information</h5>
+    <div class="row">
+      <h6>Home Type</h6>
+      <p>
+        <%= f.radio_button :home_type, "Apartment"%>
+        <%= f.label :home_type_apartment, "Apartment" %>
+        <%= f.radio_button :home_type, "House" %>
+        <%= f.label :home_type_house, "House" %>
+        <%= f.radio_button :home_type, "Condominium" %>
+        <%= f.label :home_type_condominium, "Condominium" %>
+        <%= f.radio_button :home_type, "Town House" %>
+        <%= f.label :home_type_town_house, "Town House" %>
+        <%= f.radio_button :home_type, "Other" %>
+        <%= f.label :home_type_other, "Other" %>
+      </p>
+    </div>
+  
+    <div class="row">
+      <h6>Room Type</h6>
+      <p>
+        <%= f.radio_button :room_type, "Entire Place"%>
+        <%= f.label :room_type_entire_place, "Entire Place" %>
+        <%= f.radio_button :room_type, "Private Room"%>
+        <%= f.label :room_type_private_room, "Private Room" %>
+        <%= f.radio_button :room_type, "Shared Room"%>
+        <%= f.label :room_type_shared_room, "Shared Room" %>
+      </p>
+    </div>
+    <div class="row">
+      <div class="col s6">
+        <h6>Number of Bedroom</h6>
+        <%= f.select :bedroom, options_for_select((1..8).to_a.map{|num| ["#{num}", num]})%>
+        <%= f.label :bedroom, "Select Number of Bedroom" %>
+      </div>
+      <div class="col s6">
+        <h6>Number of Bathroom</h6>
+        <%= f.select :bathroom, options_for_select((1..5).to_a.map{|num| ["#{num}", num]}) %>
+        <%= f.label :bathroom, "Select Number of Bathroom" %>
+      </div>
+    </div>
+
+  </div> 
+  <div class="divider"></div>
+
+  <div class="row">
+    <div class="col s6">
+      <h5 class="center-align">Address</h5>
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.label :apt_num, "Apt, Suite, Bldg. (optional)"%><br/>
+          <%= f.text_field :apt_num%>
+        </div>
+      </div>  
+
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.label :street_address %><br/>
+          <%= f.text_field :street_address %>
+        </div>
+      </div>      
+
+      <div class="row">
+        <div iv class="col s6">
+          <%= f.label :city %><br/>
+          <%= f.text_field :city %>
+        </div>
+        <div class="col s6"> 
+          <%= f.label :province %><br/>
+          <%= f.text_field :province %> 
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s6">
+          <%= f.label :postal_code %>
+          <%= f.text_field :postal_code %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s5 offset-s1">
+      <h5 class="center-align">Amenities</h5><br/>
+      <div class="row">
+        <%= f.check_box :has_air %>
+        <%= f.label :has_air, "Air Conditioned" %>
+      </div>
+      <div class="row">
+        <%= f.check_box :has_tv %>
+        <%= f.label :has_tv, "Television" %>
+      </div>
+      <div class="row">
+        <%= f.check_box :has_heating %>
+        <%= f.label :has_heating, "Heating" %>
+      </div>
+      <div class="row">
+        <%= f.check_box :has_kitchen%>
+        <%= f.label :has_kitchen, "Kitchen" %>
+      </div>
+      <div class="row">
+        <%= f.check_box :has_internet%>
+        <%= f.label :has_internet, "Internet" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>File</span>
+        <%= file_field_tag "images[]", type: :file, multiple: true %>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div id="photos">
+      <%= render 'photos/list' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <%= f.submit "Submit", class: "btn" %>
+  </div>
+<% end %>
+

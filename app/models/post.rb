@@ -5,10 +5,14 @@ class Post < ActiveRecord::Base
   validates :title, length: { maximum: 80 }
   validates :description, length: { maximum: 500 }
   geocoded_by :full_street_address
-  after_validation :geocode 
+  after_validation :geocode, if: :full_street_address_changed?
 
   def full_street_address
     "#{self.street_address}, #{self.city}, #{self.province} #{postal_code}"
+  end
+
+  def full_street_address_changed?
+    self.street_address_changed? or self.city_changed? or self.province_changed? or self.postal_code_changed?
   end
 
   def self.search_listing(search_params)
