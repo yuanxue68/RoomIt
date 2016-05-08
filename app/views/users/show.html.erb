@@ -2,19 +2,32 @@
 <div class="row">
   <div class="col s4 center-align">
     <div class="avatar avatar-profile">
-      <% if @user.avatar.present? %>
-        <%=image_tag @user.avatar.url(:medium)%>
-      <% else %>
-        <%=image_tag 'user.png'%>
-      <% end %>
+      <%=image_tag avatar_url(@user)%>
     </div>
-    <%=link_to edit_user_registration_path(@user), class:'btn' do%>
-      <i class="fa fa-pencil-square-o"></i> Edit Profile
+    <% if current_user == @user %>
+      <div class="file-field input-field">
+        <div class="btn">
+          <span class="center-block"><i class="fa fa-cloud-upload"></i> Edit Profile</span>
+          <%= form_for @user, url: registration_path(@user), html: {method: :put, id: 'upload-profile-form'} do |f|%>
+            <%= f.file_field :avatar, id:"upload-profile" %>
+          <% end %>
+        </div>
+      </div>
     <% end %>
+    <br/>
+    <h5>About Me</h5>
     <div class="info-box">
       <div><b>Email</b>: <%=@user.email%></div>
       <div><b>Name</b>: <%=@user.display_name%></div>
       <div><b>Phone</b>: <%=@user.phone%></div>
+      <br/>
+      <% if current_user == @user %>
+        <div class="center-align">
+          <%= link_to edit_registration_path(@user), class: 'btn' do %>
+            <i class="fa fa-pencil-square-o"></i> Edit Info
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
   <div class="col s8">

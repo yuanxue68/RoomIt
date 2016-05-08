@@ -95,5 +95,3 @@ class @GMap
     .done(@populateMarkers)
     .fail(@showFailerMsg)
 
-
-
