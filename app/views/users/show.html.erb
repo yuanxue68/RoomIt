@@ -1,36 +1,59 @@
 <br/>
-<div class="row">
-  <div class="col s4 center-align">
-    <div class="avatar avatar-profile">
-      <%=image_tag avatar_url(@user)%>
-    </div>
-    <% if current_user == @user %>
-      <div class="file-field input-field">
-        <div class="btn">
-          <span class="center-block"><i class="fa fa-cloud-upload"></i> Edit Profile</span>
-          <%= form_for @user, url: registration_path(@user), html: {method: :put, id: 'upload-profile-form'} do |f|%>
-            <%= f.file_field :avatar, id:"upload-profile" %>
-          <% end %>
-        </div>
+<div class="container row">
+  <div class="col s12 m12 l4 center-align">
+    <div class="row detail-box">
+      <div class="avatar avatar-profile">
+        <%=image_tag avatar_url(@user)%>
       </div>
-    <% end %>
-    <br/>
-    <h5>About Me</h5>
-    <div class="info-box">
-      <div><b>Email</b>: <%=@user.email%></div>
-      <div><b>Name</b>: <%=@user.display_name%></div>
-      <div><b>Phone</b>: <%=@user.phone%></div>
-      <br/>
       <% if current_user == @user %>
-        <div class="center-align">
-          <%= link_to edit_registration_path(@user), class: 'btn' do %>
-            <i class="fa fa-pencil-square-o"></i> Edit Info
-          <% end %>
+        <div class="file-field input-field">
+          <div class="btn">
+            <span class="center-block"><i class="fa fa-cloud-upload"></i> Edit Profile</span>
+            <%= form_for @user, url: registration_path(@user), html: {method: :put, id: 'upload-profile-form'} do |f|%>
+              <%= f.file_field :avatar, id:"upload-profile" %>
+            <% end %>
+          </div>
         </div>
       <% end %>
     </div>
+    <div class="row detail-box">
+      <h5>About Me</h5>
+      <div class="info-box">
+        <div><b>Email</b>: <%=@user.email%></div>
+        <div><b>Name</b>: <%=@user.display_name%></div>
+        <div><b>Phone</b>: <%=@user.phone%></div>
+        <br/>
+        <% if current_user == @user %>
+          <div class="center-align">
+            <%= link_to edit_registration_path(@user), class: 'btn' do %>
+              <i class="fa fa-pencil-square-o"></i> Edit Info
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <div class="col s8">
-    <h5>Reviews</h5>
+  <div class="col s12 m12 l8">
+    <h5 class="text-highlight center-align">Reviews</h5>
+    <div class="row pad"> 
+      <% if current_user != @user %>
+        <%= form_for [@user, @user.reviews_received.new], remote: true do |f|%>
+          <div class="col s12">
+            <div class="input-field">
+              <%= f.text_area :content, row:2, placeholder: "Leave a review...", class: "materialize-textarea", id:"review_body" %>
+            </div>
+          </div>
+          <%= button_tag type: "submit", class: "btn right" do %>
+            Post Review <i class="fa fa-comment-o"></i>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div id="reviews" class="row">
+      <%= render @reviews %>
+    </div>
+
+
   </div>
 </div>

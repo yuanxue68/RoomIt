@@ -13,8 +13,8 @@ class @Cropper
     })
 
   updateCrop: (coords)=>
-    rx = 100/coords.w
-    ry = 100/coords.h
+    rx = 80/coords.w
+    ry = 80/coords.h
     @updateCss(rx, ry, coords)
     @updateForm(coords)
 
@@ -30,5 +30,5 @@ class @Cropper
     @cropX.val(Math.round(coords.x * @ratio))
     @cropY.val(Math.round(coords.y * @ratio))
     @cropW.val(Math.round(coords.w * @ratio))
-    @cropH.val(Math.round(coords.w * @ratio))
+    @cropH.val(Math.round(coords.h * @ratio))
 

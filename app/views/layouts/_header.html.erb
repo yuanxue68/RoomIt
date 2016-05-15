@@ -1,17 +1,42 @@
+<% if user_signed_in? %>
+  <ul id="nav-dropdown" class="dropdown-content hide-on-small-only">
+    <li>
+      <%= link_to favorites_path do %>
+        <i class="fa fa-star-o"></i> Favorites
+      <% end %>
+    </li>
+    <li>
+      <%= link_to user_path(current_user) do%>
+        <i class="fa fa-edit"></i> Profile
+      <% end %>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        <i class="fa fa-sign-out"></i> Sign Out
+      <% end %>
+    </li>
+  </ul>
+<% end %>
 <nav>
   <div class="nav-wrapper">
     <%= link_to "RoomMit", root_path, class: "left logo" %>
 	    <ul id="nav-mobile" class="right">
+      <li>
+        <%= link_to posts_path do %>
+          <i class="material-icons left fa fa-compass"></i> Explore
+        <% end %>
+      </li>
       <% if user_signed_in? %>
         <li>
           <%= link_to new_post_path do %>
-            <i class="material-icons left">input</i> New Posting
+            <i class="material-icons left fa fa-file-image-o"></i> New Posting
           <% end %>
         </li>
         <li>
-          <%= link_to destroy_user_session_path, method: :delete do %>
-            <i class="material-icons left">input</i> Sign Out
-          <% end %>
+          <a class="dropdown-button" href="#!" data-activates="nav-dropdown">
+            <i class="material-icons left fa fa-cog"></i> My Account <i class="material-icons right">arrow_drop_down</i>
+          </a>
         </li>
       <% else %>
         <li>
@@ -26,7 +51,7 @@
         </li>
       <% end %>
     </ul>
-    <%= form_tag "/posts", method: "get", class: "left nav-search" do %>
+    <%= form_tag "/posts", method: "get", class: "hide-on-small-only left nav-search" do %>
       <i class="fa fa-search"></i>
       <%= text_field_tag :location, nil, placeholder:"where?" %>
     <% end %>

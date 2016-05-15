@@ -1,5 +1,15 @@
 <%= render 'slider' %>
 <div class="container">
-  <h3>Recent Posts</h3>
+  <div class="row center-align">
+    <%= link_to posts_path, class:'btn' do %>
+      <i class="fa fa-map-o"></i> Map View
+    <% end %>
+    <%= link_to posts_path(view: "list"), class: 'btn' do %>
+      <i class="fa fa-list"></i> List View 
+    <% end %>
+  </div>
+  <h3 class="center-align"><i class="fa fa-clock-o"></i> Recent Posts</h3>
+  <div class="row">
+    <%=render @posts %>
+  </div>
 </div>
-<%= render 'layouts/footer' %>

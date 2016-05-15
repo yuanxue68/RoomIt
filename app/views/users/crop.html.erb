@@ -1,6 +1,6 @@
 <div class="container center-align">
   <br/>
-  <div class="col s12">
+  <div class="row">
     <div class="crop-box">
       <%= image_tag @user.avatar.url(:large), id:"crop-box", class:"center-block" %>
     </div>
@@ -8,15 +8,16 @@
     <div class="preview-crop center-block">
       <%=image_tag @user.avatar.url(:large), id: 'preview'%>    
     </div>
-    
+  </div>
+  <div class="row">
     <%= form_for @user, url: registration_path(@user), html: {method: :put} do |f|%>
       <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h]%>
-        <%= f.text_field attribute, id: attribute%>
+        <%= f.hidden_field attribute, id: attribute%>
       <% end %>
+      <br/>
       <%= f.submit "Crop" , class: "btn"%>
     <% end %>
   </div>
-  <br/>
 </div>
 <script>
   new Cropper(<%=@user.avatar_geometry(:large).width%>, <%=@user.avatar_geometry(:large).height%>, <%= @user.avatar_geometry(:original).width/@user.avatar_geometry(:large).width %>);

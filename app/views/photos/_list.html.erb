@@ -2,17 +2,15 @@
     <div class="row">
       <% @photos.each do |photo|  %>
         <div id="photo-<%=photo.id%>" class="col s6">
-          <div class="panel panel-default">
-            <div class="panel-heading preview">
-              <%= image_tag photo.image.url(:thumb) %>
-            </div>
-            <div class="panel-body">
-              <span class="right">
-                <%= link_to photo, remote: true, method: :delete, data: {confirm: "Are you sure you want to delete this?"} do %>
-                    <i class="fa fa-times fa-lg"></i>
-                <% end %>
-              </span>
-            </div>
+          <div class="preview">
+            <%= image_tag photo.image.url(:medium) %>
+          </div>
+          <div>
+            <span class="right">
+              <%= link_to photo, remote: true, method: :delete, data: {confirm: "Are you sure you want to delete this?"} do %>
+                  <i class="fa fa-times fa-lg"></i>
+              <% end %>
+            </span>
           </div>
         </div>
       <% end %>

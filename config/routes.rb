@@ -13,11 +13,13 @@ Rails.application.routes.draw do
       end
   end
   resources :posts
+  resources :favorites, only: [:index, :create, :destroy]
   resources :photos, only:[:show, :destroy]
   resources :users, only: [:show] do
     member do
       get :crop
     end
+    resources :reviews, only: [:create, :destroy]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

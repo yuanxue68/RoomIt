@@ -1,15 +1,14 @@
 <%= render 'side_nav' %>
-<div class="row">
-  <h4 class="row center-align">
-    <i class="fa fa-building"></i> Listings
-  </h4>
-  <div class="row center-align">
-    <a href="#" data-activates="slide-out" class="btn button-collapse">Search</a>
-  </div>
+<div class="list-container">
   <div class="row">
-    <%= render @posts %>
-  </div>
-  <div class="row center-align">
-    <%= paginate @posts %>
+    <div class="row center-align">
+      <a href="#" data-activates="slide-out" class="btn button-collapse"><i class="fa fa-search"></i> Search</a>
+    </div>
+    <div class="row center-align">
+      <%= render @posts %>
+    </div>
+    <div class="row center-align">
+      <%= paginate @posts %>
+    </div>
   </div>
 </div>

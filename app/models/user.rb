@@ -4,7 +4,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :posts, dependent: :destroy
+  has_many :reviews_written, class_name:'Review', dependent: :destroy, foreign_key: 'giver_id'
+  has_many :reviews_received, class_name:'Review', dependent: :destroy, foreign_key: 'receiver_id'
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_posts, through: :favorites, source: :post
+
   has_attached_file :avatar, styles: {medium: "250x250", large: "500x500"}, processors: [:cropper]
+
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :crop_avatar, if: :should_crop?

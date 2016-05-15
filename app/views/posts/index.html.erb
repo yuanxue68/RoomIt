@@ -41,9 +41,6 @@
     var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions); 
     var gmap = new GMap(map)
   };
-  $(document).on('page:change', function(){
-    initMap();
-  })
-//google.maps.event.addDomListener(window, 'load', initMap);
+  initMap();
 </script>
 

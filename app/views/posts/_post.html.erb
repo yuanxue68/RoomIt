@@ -1,19 +1,20 @@
-<div class="col s6 m4 l3">
-	<div class="card">
-		<div class="card-image">
-			<%= image_tag 'no_picture.png' %>
+<%= link_to post_path(post), target:"_blank" do %>
+<div class="col s12 m6 l4 block-center">
+	<div class="post-card">
+		<div class="post-card-image">
+			<%= image_tag post_thumb(post) %>
+      <span class="price-tag">$<%=post.price%></span>
 		</div>
-		<div class="card-content row">
-			<h5><%=post.street_address%></h5>
-			<div class="col s4">
-				<i class="fa fa-usd"></i> <%=post.price%>
-			</div>
-			<div class="col s4">
-				<i class="fa fa-bed"></i> <%=post.bedroom%>
-			</div>
-			<div class="col s4">
-				<i class="fa fa-female"></i> <%=post.bathroom%>
-			</div>
+		<div class="post-card-content">
+			<div class="truncate post-card-title"><%=post.title%></div>
+      <div class="left">
+        <i class="fa fa-bed"></i> <%=post.bedroom%>
+        <i class="fa fa-female"></i> <%=post.bathroom%>
+      </div>
+      <div class="right text-highlight">
+        <i class="fa fa-map-pin"></i> <%=post.street_address%>
+      </div>
 		</div>
 	</div>
 </div>
+<% end %>

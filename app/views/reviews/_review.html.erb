@@ -1,0 +1,21 @@
+<div class="row" id="review-<%=review.id%>">
+  <div class="col s3">
+    <%=link_to user_path(review.giver), class:"avatar avatar-thumb center-block" do %>
+      <%= image_tag avatar_url(review.giver)%>
+    <% end %>
+  </div>
+  <div class="col s8 review-container">
+    <div class="row-space-2">
+      <% if review.giver == current_user %>
+        <%= link_to user_review_path(@user, review), 
+          remote: true, method: :delete, class:"right" do %>
+          <span>&times;</span>
+        <% end %>
+      <% end %>
+      <%= review.content %>
+    </div>
+    <div class="text-muted">
+      <%= distance_of_time_in_words_to_now(review.created_at)+ " ago"%>
+    </div>
+  </div>
+</div>

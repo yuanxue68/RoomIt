@@ -7,6 +7,10 @@ class @GMap
     @filter.rentSlider.noUiSlider.on 'set', @updateMarkers
     @map.addListener 'idle', @updateMarkers
 
+  closeAllInfoWindows: =>
+    for infoWindow in @infoWindows
+      infoWindow.close()
+
   addMarker: (post)=>
     marker  = new google.maps.Marker({
       position: {
@@ -20,15 +24,26 @@ class @GMap
       content: @getInfoWinContentString(post)
     })
     marker.addListener 'click', =>
+      @closeAllInfoWindows()
       infoWindow.open(@map, marker)
     @infoWindows.push infoWindow
     marker
 
   getInfoWinContentString: (post)=>
+    imageUrl
+    if(post.photos.length > 0)
+      imageUrl = post.photos[0].image_url
+    else
+      imageUrl = "/images/no_picture.png"
     contentString = "<div class='info-window'>"+
       "<h5 class='center-align'>"+
         "#{post.street_address}"+
       "</h5>"+
+      "<div class='row'>"+
+        "<div class='info-image'>"+
+          "<img src=#{imageUrl}>"+
+        "</div>"+
+      "</div>"+
       "<div class='row'>"+
         "<div class='col s4'>"+
           "<i class='fa fa-usd'></i> #{post.price}"+
@@ -70,8 +85,6 @@ class @GMap
   populateMarkers: (listings)=>
     @deleteMarkers()
     @addMarkersToMap(listings)
-
-  showFailerMsg: =>  
 
   updateUrl: (url)=>
     history.pushState({}, "newListing", url)

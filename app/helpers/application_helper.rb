@@ -7,4 +7,12 @@ module ApplicationHelper
       "user.png"
     end
   end
+
+  def post_thumb(post)
+    if post.photos.empty?
+      "no_picture.png"
+    else 
+      post.photos.first.image.url(:medium)
+    end
+  end
 end

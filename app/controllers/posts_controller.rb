@@ -6,14 +6,14 @@ class PostsController < ApplicationController
     if request.format.html?
       @coordinate = params[:location] ? Geocoder.coordinates(params[:location]) : nil
       if params[:view] == "list"
-        @posts = Post.search_listing(params).page(params[:page]).per(10)
+        @posts = Post.includes(:photos).search_listing(params).page(params[:page]).per(6)
         render 'posts/index_list'
       else
         render 'posts/index'
       end
     else
-      @posts = Post.search_listing params 
-      render json: @posts
+      @posts = Post.includes(:photos).search_listing(params)
+      render json: @posts.to_json({ include: {photos: {only:[], methods: [:image_url]}}})
     end
   end
 
@@ -38,6 +38,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.includes(:photos).find(params[:id])
+    @favorited = current_user.favorites.find_by(post: params[:id])
     @nearby = @post.nearbys(5).limit(4)
   end
 
@@ -77,7 +78,7 @@ class PostsController < ApplicationController
       :title, :description, :home_type, :room_type, :bedroom, 
       :bathroom, :street_address, :city, :province, :postal_code,
       :has_tv, :has_kitchen, :has_air, :has_heating, :has_internet, 
-      :price
+      :price, :available_date
     )
   end
 end

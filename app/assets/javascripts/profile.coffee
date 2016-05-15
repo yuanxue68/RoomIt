@@ -1,3 +1,3 @@
-$(document).on "page:change", ->
+$(document).ready ->
   $('#upload-profile').change ->
     $('#upload-profile-form').submit()
