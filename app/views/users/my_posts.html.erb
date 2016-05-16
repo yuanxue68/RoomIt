@@ -1,0 +1,12 @@
+<div class="container">
+  <h5 class="center-align text-highlight"><i class="fa fa-tasks"></i> My Posts</h5>
+  <% if @posts.empty? %>
+    <div class="row">
+      <h3 class="text-muted center-align">No Posts Yet<i class="fa fa-frown-o"></i></h3>
+    </div>
+  <% else %>
+    <div class="row">
+      <%= render @posts %>
+    </div>
+  <% end %>
+</div>

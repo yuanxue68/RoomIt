@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     member do
       get :crop
+      get :my_posts
     end
     resources :reviews, only: [:create, :destroy]
   end

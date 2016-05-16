@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     if request.format.html?
       @coordinate = params[:location] ? Geocoder.coordinates(params[:location]) : nil
       if params[:view] == "list"
-        @posts = Post.includes(:photos).search_listing(params).page(params[:page]).per(6)
+        @posts = Post.includes(:photos).search_listing(params).page(params[:page]).per(12)
         render 'posts/index_list'
       else
         render 'posts/index'

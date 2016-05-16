@@ -6,6 +6,10 @@ class UsersController < ApplicationController
     @reviews = @user.reviews_received.includes(:giver)
   end
 
+  def my_posts
+    @posts = current_user.posts.includes(:photos).page(params[:page]).per(12)
+  end
+
   def crop
     @user = current_user
   end

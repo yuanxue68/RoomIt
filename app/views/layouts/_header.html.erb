@@ -1,6 +1,11 @@
 <% if user_signed_in? %>
   <ul id="nav-dropdown" class="dropdown-content hide-on-small-only">
     <li>
+      <%= link_to my_posts_user_path(current_user) do %>
+        <i class="fa fa-tasks"></i> My Posts
+      <% end %>
+    </li>
+    <li>
       <%= link_to favorites_path do %>
         <i class="fa fa-star-o"></i> Favorites
       <% end %>
