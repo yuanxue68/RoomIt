@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
-  describe "valide params" do
+  describe "valid params" do
     login_user
     it "should permit post_params" do
       params = {
@@ -27,4 +27,5 @@ RSpec.describe PostsController, type: :controller do
         on(:post)
     end
   end
+  
 end

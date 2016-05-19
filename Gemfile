@@ -32,6 +32,7 @@ gem 'materialize-sass'
 gem 'geocoder'
 gem 'kaminari'
 gem "paperclip", "~> 5.0.0.beta1"
+gem 'aws-sdk'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
