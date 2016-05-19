@@ -26,9 +26,9 @@ class User < ActiveRecord::Base
 
   def avatar_geometry(style = :original)
     @geometry ||= {}
-    avatar_path = (avatar.options[:storage] == :s3) ? avatar.url(style) : avatar.path(style)
-    puts "url is"
-    p avatar_path
+    #imagemagick on heroku has https disallowed, change to http as a work around
+    avatar_path = (avatar.options[:storage] == :s3) ? 
+      avatar.url(style).sub("https", "http") : avatar.path(style)
     @geometry[style] ||= Paperclip::Geometry.from_file(avatar_path)
   end
 
