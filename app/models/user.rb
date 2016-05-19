@@ -26,7 +26,8 @@ class User < ActiveRecord::Base
 
   def avatar_geometry(style = :original)
     @geometry ||={}
-    @geometry[style] ||= Paperclip::Geometry.from_file(avatar.path(style))
+    avatar_path = (avatar.options[:storage] == :s3) ? avatar.url(style) : avatar.path(style)
+    @geometry[style] ||= Paperclip::Geometry.from_file(avatar_path)
   end
 
 
