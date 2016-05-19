@@ -84,6 +84,9 @@ Rails.application.configure do
       access_key_id: ENV.fetch('S3_ACCESS_KEY'),
       secret_access_key: ENV.fetch('S3_SECRET_KEY'),
       s3_region: ENV.fetch('S3_REGION'),
-    }
+    },
+    s3_protocol: :https,
+    url: ':s3_domain_url',
+    path: '/:class/:attachment/:id_partition/:style/:filename'
   }
 end
