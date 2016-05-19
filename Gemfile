@@ -31,8 +31,10 @@ gem 'font-awesome-rails', '4.5.0.1'
 gem 'materialize-sass'
 gem 'geocoder'
 gem 'kaminari'
-gem "paperclip", "~> 5.0.0.beta1"
+gem "paperclip", "~> 4.3.6"
+gem 'cocaine', '0.5.5'
 gem 'aws-sdk'
+gem 'rmagick'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
