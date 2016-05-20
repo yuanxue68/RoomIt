@@ -33,7 +33,7 @@ gem 'geocoder'
 gem 'kaminari'
 gem "paperclip", "~> 4.3.6"
 gem 'cocaine', '0.5.5'
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 gem 'rmagick'
 
 # Use ActiveModel has_secure_password
