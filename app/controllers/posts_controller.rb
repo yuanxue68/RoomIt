@@ -38,8 +38,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.includes(:photos).find(params[:id])
-    @favorited = current_user.favorites.find_by(post: params[:id])
     @nearby = @post.nearbys(5).limit(4)
+    @favorited = current_user.favorites.find_by(post: params[:id]) if current_user
   end
 
   def edit

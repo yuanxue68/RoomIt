@@ -9,7 +9,7 @@
         <%=link_to edit_post_path(@post), class:"btn right" do %>
           <i class="fa fa-edit"></i> Edit
         <% end %>
-      <% else %>
+      <% elsif current_user %>
         
         <%= hidden_field :post, :id, value: @post.id %>
         <% if @favorited.nil? %>
