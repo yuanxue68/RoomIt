@@ -62,129 +62,18 @@ body{
   min-height: 110px;
 }
 
-.preview {
-  img {
-    width: 100%;
-  }
-}
-.avatar {
-	margin: auto;
-	border-radius: 50%;
-	overflow: hidden;
-  img {
-    width: 100%;
-  }
-}
-
-.avatar-thumb {
-  width: 90px;
-  height: 90px;
-}
-
-.avatar-profile {
-  width: 180px;
-  height: 180px;
-}
-
-.info-box {
-	text-align: left;	
-	margin: auto;
-	padding: 10px;
-	width: 250px;		
-}
-
-.preview-crop{
-	width: 80px;
-	height: 80px;
-	overflow: hidden;
-}
-
-.crop-box{
-	max-width:500px;
-	max-height: 500px;
-	margin:auto;
-}
-
-.center-block{
-	margin:auto;
-}
-
 .file-field .btn {
 	float:none;
 }
 
-.post-card {
-  background-color: #FFFFFF;
-  margin-bottom: 20px;
-  .post-card-image {
-    height: 250px;
-    overflow: hidden;
-    position: relative;
-    img {
-      width:100%;
-      height: auto;
-      display: block;
-    }
-  }
-
-  .post-card-title {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-
-  .post-card-content {
-    overflow: hidden;
-    border-top: 1px solid #e9e9e9;
-    text-align: left;
-    padding: 15px;	
-    color: #636366;
-  }
-
-  .price-tag {
-    background: rgba(0, 0, 0, 0) url(/images/price-tag.png) no-repeat scroll 0 0 / 100% 100%;
-    position: absolute;
-    padding: 1px 13px;
-    right: 0;
-    font-size: 20px;
-    font-weight: 400;
-    bottom: 15px;
-    color: white;
-  }
-}
-
-.truncate {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.text-muted {
-  color: #82888a;
-}
-
-.text-highlight {
-  color: #1ca4a4;
-}
-
-.row-space-2 {
-  margin-bottom: 12.5px;
-}
 
 .pad {
   padding: 15px;
 }
+
 .list-container {
   padding: 30px;
   background-color: #f5f5f5;
-}
-
-.review-container {
-  &.col{
-    padding: 10px;
-    padding-left: 0px;
-    margin-right: 20x;
-  }
-  border-top: 1px solid #e9e9e9;
 }
 
 footer.page-footer{

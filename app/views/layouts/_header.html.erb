@@ -23,10 +23,65 @@
     </li>
   </ul>
 <% end %>
+<!--
+  nav when screen is small
+-->
+<ul class="side-nav" id="mobile-header-menu">
+  <%= form_tag "/posts", method: "get" do %>
+    <%= text_field_tag :location, nil, placeholder:"where?" %>
+  <% end %>
+
+  <li>
+    <%= link_to posts_path do %>
+      Explore
+    <% end %>
+  </li>
+  <% if user_signed_in? %>
+    <li>
+      <%= link_to new_post_path do %>
+        New Posting
+      <% end %>
+    </li>
+    <li>
+      <%= link_to my_posts_user_path(current_user) do %>
+        My Posts
+      <% end %>
+    </li>
+    <li>
+      <%= link_to favorites_path do %>
+        Favorites
+      <% end %>
+    </li>
+    <li>
+      <%= link_to user_path(current_user) do%>
+        Profile
+      <% end %>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        Sign Out
+      <% end %>
+    </li>
+  <% else %>
+    <li>
+      <%= link_to new_user_session_path do %>
+        Sign In
+      <% end %>
+    </li>
+    <li>
+      <%= link_to new_user_registration_path do %>
+        Sign Up
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
 <nav>
   <div class="nav-wrapper">
-    <%= link_to "RoomIt", root_path, class: "left logo" %>
-	    <ul id="nav-mobile" class="right">
+    <a href="#" data-activates="mobile-header-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+    <%= link_to "RoomIt", root_path, class: "brand-logo" %>
+	  <ul class="right hide-on-med-and-down">
       <li>
         <%= link_to posts_path do %>
           <i class="material-icons left fa fa-compass"></i> Explore
@@ -56,10 +111,9 @@
         </li>
       <% end %>
     </ul>
-    <%= form_tag "/posts", method: "get", class: "hide-on-small-only left nav-search" do %>
+    <%= form_tag "/posts", method: "get", class: "hide-on-med-and-down right nav-search" do %>
       <i class="fa fa-search"></i>
       <%= text_field_tag :location, nil, placeholder:"where?" %>
     <% end %>
- 
 	</div>
 </nav>
