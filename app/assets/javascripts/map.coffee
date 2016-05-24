@@ -103,7 +103,8 @@ class @GMap
     @updateUrl(url)
     $.ajax({
       url: url,
-      dataType: "json" 
+      dataType: "json",
+      cache: false
     })
     .done(@populateMarkers)
     .fail(@showFailerMsg)
