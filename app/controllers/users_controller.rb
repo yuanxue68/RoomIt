@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:favorite, :crop]
+  before_action :authenticate_user!, only: [:favorite, :crop, :my_posts]
 
   def show
     @user = User.find(params[:id])
